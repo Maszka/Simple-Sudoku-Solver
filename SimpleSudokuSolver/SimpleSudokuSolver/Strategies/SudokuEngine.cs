@@ -22,7 +22,7 @@ namespace SimpleSudokuSolver.Strategies
         {
             List<IStrategy> strategies = new List<IStrategy>()
             {
-
+                new SimpleMarkUpStrategy(_sudokuMapper)
             };
 
             var currentState = _sudokuBoardStateManager.GenerateState(sudokuBoard);

@@ -14,7 +14,7 @@ namespace SimpleSudokuSolver.Workers
 
             for (int row = 0; row < 9; row++)
             {
-                Console.WriteLine("|");
+                Console.Write("|");
 
                 for (int col = 0; col < 9; col++)
                 {

@@ -1,3 +1,4 @@
+using SimpleSudokuSolver.Strategies;
 using SimpleSudokuSolver.Workers;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,25 @@ namespace SimpleSudokuSolver
     {
         static void Main(string[] args)
         {
-            SudokuFileReader fileReader = new SudokuFileReader();
+            SudokuBoardStateManager sudokuBoardStateManager = new SudokuBoardStateManager();
+            SudokuMapper sudokuMapper = new SudokuMapper();
+            Displayer displayer = new Displayer();
+            SudokuEngine sudokuEngine = new SudokuEngine(sudokuBoardStateManager, sudokuMapper);
+            SudokuFileReader sudokuFileReader = new SudokuFileReader();
 
-            var table = fileReader.FileReader("SudokuEasy.txt");
+            string fileName = "SudokuEasy.txt";
 
-            foreach(var t in table)
-            {
-                Console.WriteLine(t);
-            }
+            var sudokuBoard = sudokuFileReader.FileReader(fileName);
+
+            displayer.Display("initial", sudokuBoard);
+
+            sudokuEngine.SolveSudoku(sudokuBoard);
+
+            displayer.Display("final", sudokuBoard);
 
             Console.ReadKey();
+
+
         }
     }
 }
